@@ -121,13 +121,16 @@ var commonMysqlDataTypeMapString = map[string]string{
 	"longblob":        "string",
 	"mediumblob":      "string",
 	"tinyblob":        "string",
+
+	"_int4": "[]int64",
+	"_text": "[]string",
 }
 
 // ConvertDataType converts mysql column type into golang type
 func ConvertDataType(dataBaseType int, isDefaultNull bool) (string, error) {
 	tp, ok := commonMysqlDataTypeMapInt[dataBaseType]
 	if !ok {
-		return "", fmt.Errorf("unsupported database type: %v", dataBaseType)
+		return "", fmt.Errorf("123unsupported database type: %v", dataBaseType)
 	}
 
 	return mayConvertNullType(tp, isDefaultNull), nil
@@ -137,7 +140,7 @@ func ConvertDataType(dataBaseType int, isDefaultNull bool) (string, error) {
 func ConvertStringDataType(dataBaseType string, isDefaultNull bool) (string, error) {
 	tp, ok := commonMysqlDataTypeMapString[strings.ToLower(dataBaseType)]
 	if !ok {
-		return "", fmt.Errorf("unsupported database type: %s", dataBaseType)
+		return "", fmt.Errorf("321unsupported database type: %s", dataBaseType)
 	}
 
 	return mayConvertNullType(tp, isDefaultNull), nil
