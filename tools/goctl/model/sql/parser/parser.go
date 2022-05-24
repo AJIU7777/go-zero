@@ -221,7 +221,7 @@ func convertColumns(columns []*parser.Column, primaryColumn string) (Primary, ma
 				isDefaultNull = false
 			}
 		}
-
+		fmt.Println(fmt.Sprintf("column.Name : %v , column.DataType.Type() : %v", column.Name, column.DataType.Type()))
 		dataType, err := converter.ConvertDataType(column.DataType.Type(), isDefaultNull)
 		if err != nil {
 			return Primary{}, nil, err
@@ -348,6 +348,8 @@ func getTableFields(table *model.Table) (map[string]*Field, error) {
 	fieldM := make(map[string]*Field)
 	for _, each := range table.Columns {
 		isDefaultNull := each.ColumnDefault == nil && each.IsNullAble == "YES"
+		fmt.Println(fmt.Sprintf("each.Name : %v , each.DataType : %v", each.Name, each.DataType))
+
 		dt, err := converter.ConvertStringDataType(each.DataType, isDefaultNull)
 		if err != nil {
 			return nil, err

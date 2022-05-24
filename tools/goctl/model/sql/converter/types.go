@@ -27,7 +27,7 @@ var commonMysqlDataTypeMapInt = map[int]string{
 	parser.Float4:    "float64",
 	parser.Float8:    "float64",
 	parser.Double:    "float64",
-	parser.Decimal:   "float64",
+	parser.Decimal:   "decimal.Decimal",
 	parser.Dec:       "float64",
 	parser.Fixed:     "float64",
 	parser.Numeric:   "float64",
@@ -86,7 +86,7 @@ var commonMysqlDataTypeMapString = map[string]string{
 	"float4":    "float64",
 	"float8":    "float64",
 	"double":    "float64",
-	"decimal":   "float64",
+	"decimal":   "decimal.Decimal",
 	"dec":       "float64",
 	"fixed":     "float64",
 	"real":      "float64",
@@ -131,6 +131,8 @@ var commonMysqlDataTypeMapString = map[string]string{
 // ConvertDataType converts mysql column type into golang type
 func ConvertDataType(dataBaseType int, isDefaultNull bool) (string, error) {
 	tp, ok := commonMysqlDataTypeMapInt[dataBaseType]
+	fmt.Println(fmt.Sprintf("ConvertDataType ----> dataBaseType : %v -----> %v", dataBaseType, commonMysqlDataTypeMapInt[dataBaseType]))
+
 	if !ok {
 		return "", fmt.Errorf("123unsupported database type: %v", dataBaseType)
 	}
@@ -141,6 +143,8 @@ func ConvertDataType(dataBaseType int, isDefaultNull bool) (string, error) {
 // ConvertStringDataType converts mysql column type into golang type
 func ConvertStringDataType(dataBaseType string, isDefaultNull bool) (string, error) {
 	tp, ok := commonMysqlDataTypeMapString[strings.ToLower(dataBaseType)]
+	fmt.Println(fmt.Sprintf("ConvertStringDataType ----> dataBaseType : %v -----> %v", dataBaseType, commonMysqlDataTypeMapString[dataBaseType]))
+
 	if !ok {
 		return "", fmt.Errorf("321unsupported database type: %s", dataBaseType)
 	}

@@ -6,6 +6,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"google.golang.org/genproto/googleapis/type/decimal"
 	"strings"
 	"time"
 
@@ -39,20 +40,20 @@ type (
 	}
 
 	CloudBillConfig struct {
-		BillConfId  int64        `db:"bill_conf_id"` // ID
-		ConfName    string       `db:"conf_name"`    // 配置名称
-		ConfType    string       `db:"conf_type"`    // 配置类型 volume (硬盘容量)    nic_qos (网络带宽)     public_ip (公网IP)
-		ConfNum     int64        `db:"conf_num"`     // 配置数量
-		BillMode    string       `db:"bill_mode"`    // 计费模式 月: H 小时：M
-		BillAmount  float64      `db:"bill_amount"`  // 金额 $
-		Description string       `db:"description"`  // 详细描述
-		Tag         string       `db:"tag"`
-		State       bool         `db:"state"`       // 是否启用[true:启用,false:不启用]
-		Version     int64        `db:"version"`     // 记录版本号
-		DelState    bool         `db:"del_state"`   // 是否删除
-		CreateTime  time.Time    `db:"create_time"` // 创建时间
-		UpdateTime  time.Time    `db:"update_time"` // 更新时间
-		DeleteTime  sql.NullTime `db:"delete_time"` // 删除时间
+		BillConfId  int64           `db:"bill_conf_id"` // ID
+		ConfName    string          `db:"conf_name"`    // 配置名称
+		ConfType    string          `db:"conf_type"`    // 配置类型 volume (硬盘容量)    nic_qos (网络带宽)     public_ip (公网IP)
+		ConfNum     int64           `db:"conf_num"`     // 配置数量
+		BillMode    string          `db:"bill_mode"`    // 计费模式 月: H 小时：M
+		BillAmount  decimal.Decimal `db:"bill_amount"`  // 金额 $
+		Description string          `db:"description"`  // 详细描述
+		Tag         string          `db:"tag"`
+		State       bool            `db:"state"`       // 是否启用[true:启用,false:不启用]
+		Version     int64           `db:"version"`     // 记录版本号
+		DelState    bool            `db:"del_state"`   // 是否删除
+		CreateTime  time.Time       `db:"create_time"` // 创建时间
+		UpdateTime  time.Time       `db:"update_time"` // 更新时间
+		DeleteTime  sql.NullTime    `db:"delete_time"` // 删除时间
 	}
 )
 
