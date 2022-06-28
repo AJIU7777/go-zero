@@ -126,6 +126,7 @@ var commonMysqlDataTypeMapString = map[string]string{
 	"_text": "[]string",
 	"inet":  "string",
 	"money": "float64",
+	"uuid":  "string",
 }
 
 // ConvertDataType converts mysql column type into golang type
